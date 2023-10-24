@@ -1,0 +1,88 @@
+---
+sidebar_position: 3
+title: "🎮 Playground"
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<div class="select-language">Select a language</div>
+
+<Tabs queryString groupId="lang">
+  <TabItem value="py" label="Python"></TabItem>
+  <TabItem value="js" label="JavaScript"></TabItem>
+</Tabs>
+
+<Tabs queryString groupId="lang" className="hideTabSwitcher">
+<TabItem value="py" label="Python">
+
+> ⚠️ **Python Playground is not working at the moment because python support in stackblitz is still experimental.**
+
+<Playground lang="py" queryString>
+
+```
+# 1. Import the chroma client
+import chromadb
+
+# 2. Initialize the client
+chroma_client = chromadb.Client(host='localhost', port=8000, ssl=False)
+
+async def main():
+    # 3. Get a collection to work with
+    collection = chroma_client.get_collection("demo_collection")
+
+    # 4. Query data
+    results = collection.query(
+        query_texts=["This is a query document"],
+        n_results=2
+    )
+
+    # 5. Print the result to the console
+    print(results)
+
+if __name__ == "__main__":
+    import asyncio
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())
+
+```
+
+</Playground>
+
+</TabItem>
+<TabItem value="js" label="JavaScript">
+
+<Playground lang="js">
+
+```
+// 1. Import the chroma client
+const { ChromaClient } = require("chromadb");
+
+(async () => {
+  // 2. Initialize the client
+  const client = new ChromaClient({
+    path: "http://localhost:8000",
+  });
+
+  // 3. Get a collection to work with
+  const collection = await client.getCollection({
+    name: "demo_collection",
+  }).catch(console.error);
+
+  // 4. Query data
+  const results = await collection.query({
+    nResults: 2,
+    queryTexts: ["This is a query document"],
+  });
+
+  // 5. Print the result to the console
+  console.log(JSON.stringify(results, 2));
+})();
+
+```
+
+</Playground>
+
+</TabItem>
+
+</Tabs>

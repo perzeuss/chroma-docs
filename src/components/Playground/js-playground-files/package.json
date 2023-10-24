@@ -1,0 +1,13 @@
+{
+    "name": "chromadb-starter",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "chromadb": "^1"
+    },
+    "stackblitz": {
+        "installDependencies": true,
+        "startCommand": "npm start"
+    }
+}
